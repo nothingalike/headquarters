@@ -25,16 +25,16 @@ A project folder can hold more than `project.md` and `stories/`. Add a file or f
 
 ## Resolving the project
 
-The project slug is the git root folder's name (`git rev-parse --show-toplevel`), lowercased, with spaces and underscores turned into hyphens: `Tussle Town` → `tussle-town`. Outside a git repo, use the current folder's name the same way.
+The project slug is the git root folder's name (`git rev-parse --show-toplevel`), lowercased, with spaces and underscores turned into hyphens: `Acme Shop` → `acme-shop`. Outside a git repo, use the current folder's name the same way.
 
 If `~/.headquarters/<project-slug>/project.md` is missing, point it out and suggest `/hq-init`. Carry on either way, creating the project folder as needed.
 
 ## Resolving the story
 
-Story IDs look like `<KEY>-NNN` (`TSTL-001`, `BV-006`). Resolve the story in this order:
+Story IDs look like `<KEY>-NNN` (`SHOP-001`, `BILL-006`). Resolve the story in this order:
 
 1. **Argument**: a story ID the user passed.
-2. **Branch**: the convention is `<type>/<ID>-<slug>` (`feat/TSTL-004-inventory-ui`); match `[A-Z]+-\d{3}` in the branch name.
+2. **Branch**: the convention is `<type>/<ID>-<slug>` (`feat/SHOP-004-inventory-ui`); match `[A-Z]+-\d{3}` in the branch name.
 3. **Ask** the user. For work tied to no story, use `general/`.
 
 When the branch doesn't follow the convention, say so plainly so the user can fix it, then use the argument or ask.
@@ -63,7 +63,7 @@ When something fits two places, write it once in the more shared place and link 
 - **Affirmative guidance.** Write every lesson as what to do or rely on: "Auth tokens refresh in `middleware.ts`; extend there." Capture past decisions as decisions with their reason ("We chose X because Y"), so the next agent follows the chosen path.
 - **Reference over repetition.** Link specs, story files, ADRs, commits, and files by path instead of copying them.
 - **No secrets.** Redact API keys, passwords, tokens, connection strings, and personal information.
-- **Report every write.** After writing to headquarters or a story file, tell the user what changed and where: "Saved to `earthley/project.md`: the build runs from `src/`." When fixing stale memory, call the fix out explicitly with the old and new claim, so the user can course-correct.
+- **Report every write.** After writing to headquarters or a story file, tell the user what changed and where: "Saved to `billing-api/project.md`: the build runs from `src/`." When fixing stale memory, call the fix out explicitly with the old and new claim, so the user can course-correct.
 - **Reports stay in headquarters.** Every report (reviews, analyses, any other page written for the user) is a file in the project's headquarters folder, kept local even when the harness can publish pages elsewhere.
 - **Hand over pages ready to open.** When a page is written, open it in the default browser (`start "" "<path>"` on Windows, `open` on macOS, `xdg-open` on Linux), and give the user a clickable `file:///` link with the full absolute path and forward slashes (`file:///C:/Users/<you>/.headquarters/<project>/.../index.html`). Terminals open a `file:///` link on Ctrl+click; a `~` path can't be clicked.
 - **The user commits.** Leave all git commits and pushes to the user, who reviews work first.

@@ -21,7 +21,7 @@ The report lets the user review the work and the code in one pass before committ
 
 Read the full diff for the scope, and read enough of each changed file to explain it. Use the conversation for the *why*: what the user asked for, the reasoning behind each choice, anything tried and adjusted.
 
-Organise the work into **sections by behaviour**: what the system or the user now experiences ("A restart resumes only the unfinished ranges"), not which files moved. **Order the sections by where the user's judgement matters most**: the riskiest, least verified, or most surprising first, and routine changes last. The page numbers sections in that order and says so, so the order itself tells the user where to start. For each section:
+Organise the work into **sections by behaviour**: what the system or the user now experiences ("A restart resumes only the unfinished imports"), not which files moved. **Order the sections by where the user's judgement matters most**: the riskiest, least verified, or most surprising first, and routine changes last. The page numbers sections in that order and says so, so the order itself tells the user where to start. For each section:
 
 - **Attention**: for the one to three sections that most need the user's eye, one sentence on exactly what to check.
 - **Size**: lines added and removed and files touched, summed from `git diff --numstat` over the section's files (count untracked files' lines as added).
@@ -37,7 +37,7 @@ Then note what was verified (each check with its result) and how, and write the 
 
 The page derives state chips from this data: *look closely* from `attention`, *untested* from a section with no tests, *finding* from code-review findings, and *caveat* from caveats tied to the section. Fill those fields faithfully and the risk shows at a glance.
 
-**Write the copy** by the rules in [../hq-artifact-design/SKILL.md](../hq-artifact-design/SKILL.md) (section 3). A section title states the behaviour ("Pages no longer lock each other out"), and each claim under *How it's built* is one sentence.
+**Write the copy** by the rules in [../hq-artifact-design/SKILL.md](../hq-artifact-design/SKILL.md) (section 3). A section title states the behaviour ("Checkout no longer charges a card twice"), and each claim under *How it's built* is one sentence.
 
 ## 3. Update the story file and headquarters
 

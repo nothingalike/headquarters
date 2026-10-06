@@ -57,7 +57,7 @@ updated: <YYYY-MM-DD>
 
 ## Stories
 
-<Where they live and the ID key, e.g. "pmt, key TSTL, in project/".>
+<Where they live and the ID key, e.g. "pmt, key SHOP, in project/".>
 
 ## Things to know
 
