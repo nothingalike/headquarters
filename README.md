@@ -22,6 +22,7 @@ Then run `/hq-setup` once on your machine, and `/hq-init` inside each project yo
 | `handoff` | you | Writes a dated handoff for the current story so a fresh session can continue. |
 | `pickup` | you | Reads a story's handoff trail and briefs you before resuming. |
 | `review` | you or the agent | When a slice is done, opens an HTML report in your browser: sections about behaviour in review order, risk chips, every claim linked into VS Code, short snippets, the tests that prove each section, and a suggested commit message. |
+| `plate` | you or the agent | Keeps what's on your plate across projects, plus a daily log of what got done, blockers, and questions. Agents log as they work; `/plate eod` and `/plate week` recap it. |
 | `hq-artifact-design` | the agent | House method for HTML pages people read: tokens, type, light/dark, layout, copy, and local-page mechanics. Our own version of the artifact-design method, used by `review` and any report an agent writes. |
 
 ## Workflow

@@ -21,6 +21,8 @@ A handoff captures this session so a fresh one continues with a clear head, and 
 
 Apply the audience test from the guide to what this session produced. Write what a teammate needs into the story file: open questions into `## Questions`, plan changes into `## Plan`, a one-line progress row into `## Work History`. Leave the story's status alone. Keep this list of edits for the report.
 
+Then bring the plate up to date, following [../plate/SKILL.md](../plate/SKILL.md): add this session's finished work, blockers, and questions that today's log doesn't have yet, and mark the story's plate item `[/]`. Keep these lines for the report too.
+
 ## 3. Write the handoff
 
 Write `~/.headquarters/<project-slug>/stories/<ID>/handoffs/YYYY-MM-DD-HHMM-<slug>.md` (or under `general/`), using local time and a three-to-five-word slug of the session's focus. Create folders as needed.
@@ -65,4 +67,4 @@ Everything below the TL;DR is written for the next agent: dense, specific, paths
 
 ## 4. Report
 
-Print the TL;DR, the handoff's path, and the list of story-file edits. Mention that `/pickup` resumes from it.
+Print the TL;DR, the handoff's path, the list of story-file edits, and the plate lines written. Mention that `/pickup` resumes from it.

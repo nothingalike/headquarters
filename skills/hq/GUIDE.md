@@ -1,6 +1,6 @@
 # Headquarters guide
 
-Headquarters is shared memory for agents and the user, kept outside every code repo at `~/.headquarters` (on Windows, `%USERPROFILE%\.headquarters`). It holds what helps the next session work well: project knowledge, story-level working memory, handoffs, and review reports. Every headquarters skill (`hq`, `hq-setup`, `hq-init`, `handoff`, `pickup`, `review`) follows this guide. Pages written for the user to read follow `hq-artifact-design`.
+Headquarters is shared memory for agents and the user, kept outside every code repo at `~/.headquarters` (on Windows, `%USERPROFILE%\.headquarters`). It holds what helps the next session work well: project knowledge, story-level working memory, handoffs, and review reports. Every headquarters skill (`hq`, `hq-setup`, `hq-init`, `handoff`, `pickup`, `review`, `plate`) follows this guide. Pages written for the user to read follow `hq-artifact-design`.
 
 If `~/.headquarters/me.md` is missing, the machine hasn't been set up: point it out and suggest `/hq-setup`.
 
@@ -9,6 +9,7 @@ If `~/.headquarters/me.md` is missing, the machine hasn't been set up: point it 
 ```
 ~/.headquarters/
   me.md                          the user's cross-project working preferences
+  plate/                         what's on the user's plate and a daily log, kept by `plate`
   <project-slug>/
     project.md                   what the project is, how it runs, dependencies, quirks, Related list
     stories/<ID>/
