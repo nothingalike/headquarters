@@ -1,6 +1,6 @@
 # Headquarters guide
 
-Headquarters is shared memory for agents and the user, kept outside every code repo at `~/.headquarters` (on Windows, `%USERPROFILE%\.headquarters`). It holds what helps the next session work well: project knowledge, story-level working memory, handoffs, and review reports. Every headquarters skill (`hq`, `hq-setup`, `hq-init`, `handoff`, `pickup`, `review`, `plate`, `meetings`) follows this guide. Pages written for the user to read follow `hq-artifact-design`.
+Headquarters is shared memory for agents and the user, kept outside every code repo at `~/.headquarters` (on Windows, `%USERPROFILE%\.headquarters`). It holds what helps the next session work well: project knowledge, a wiki of notes, story-level working memory, handoffs, and review reports. Every headquarters skill (`hq`, `hq-setup`, `hq-init`, `handoff`, `pickup`, `review`, `plate`, `meetings`) follows this guide. Pages written for the user to read follow `hq-artifact-design`.
 
 If `~/.headquarters/me.md` is missing, the machine hasn't been set up: point it out and suggest `/hq-setup`.
 
@@ -9,11 +9,15 @@ If `~/.headquarters/me.md` is missing, the machine hasn't been set up: point it 
 ```
 ~/.headquarters/
   me.md                          the user's cross-project working preferences
+  tags.md                        the tag vocabulary every note draws from
+  notes/                         wiki notes that span projects or belong to none (see NOTES.md)
+    index.md  log.md  <slug>.md
   plate/                         what's on the user's plate and a daily log, kept by `plate`
   calendars/calendars.json       the user's calendar feeds, read by `meetings`; holds secret URLs, so it stays local
   meetings/YYYY-MM-DD-HHMM-<slug>.md   one meeting's notes, summary, and full transcript, kept by `meetings`
   <project-slug>/
     project.md                   what the project is, how it runs, dependencies, quirks, Related list
+    notes/                       the project's wiki notes: index.md, log.md, <slug>.md (see NOTES.md)
     stories/<ID>/
       notes.md                   story-level memory that isn't a handoff
       handoffs/YYYY-MM-DD-HHMM-<slug>.md
@@ -58,6 +62,7 @@ Apply the **audience test** first, then the **lifespan test**:
 2. **Lifespan**: does it outlive the story and describe the code?
    - Facts the repo needs to build, run, or be understood (a build quirk, an architectural decision) → the **repo**: its docs, `CLAUDE.md`/`AGENTS.md`, or an ADR.
    - Knowledge about working in the project that spans stories → **headquarters** `project.md`.
+   - Documentation-style knowledge (how something works, how to do something, terms, decisions, what someone explained) → a **note** in the project's `notes/` wiki, or in `~/.headquarters/notes/` when it spans projects or belongs to none. [NOTES.md](NOTES.md) defines the note format, tags, and index.
 
 When something fits two places, write it once in the more shared place and link to it from the other.
 

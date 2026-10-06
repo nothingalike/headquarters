@@ -62,6 +62,10 @@ updated: <YYYY-MM-DD>
 ## Things to know
 
 - <Affirmative guidance: what to do or rely on.>
+
+## Notes
+
+The project's wiki: [notes/index.md](notes/index.md).
 ```
 
 Leave out sections with nothing to say. On an update, keep entries that are still true, and call out each one you changed or removed.
