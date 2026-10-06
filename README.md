@@ -23,6 +23,7 @@ Then run `/hq-setup` once on your machine, and `/hq-init` inside each project yo
 | `pickup` | you | Reads a story's handoff trail and briefs you before resuming. |
 | `review` | you or the agent | When a slice is done, opens an HTML report in your browser: sections about behaviour in review order, risk chips, every claim linked into VS Code, short snippets, the tests that prove each section, and a suggested commit message. |
 | `plate` | you or the agent | Keeps what's on your plate across projects, plus a daily log of what got done, blockers, and questions. Agents log as they work; `/plate eod` and `/plate week` recap it. |
+| `meetings` | you, each morning | Reads your calendar feeds (listed in `~/.headquarters/calendars/calendars.json`) and writes the day's meetings into the plate's daily log. Brings in each recorded meeting's summary and full transcript (from a recorder such as Wispr Flow) as a file in `~/.headquarters/meetings/`, puts your follow-ups on the plate, and takes quick notes with `/meetings note`. |
 | `hq-artifact-design` | the agent | House method for HTML pages people read: tokens, type, light/dark, layout, copy, and local-page mechanics. Our own version of the artifact-design method, used by `review` and any report an agent writes. |
 
 ## Workflow
