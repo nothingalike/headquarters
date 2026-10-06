@@ -57,11 +57,15 @@ updated: <YYYY-MM-DD>
 
 ## Stories
 
-<Where they live and the ID key, e.g. "pmt, key TSTL, in project/".>
+<Where they live and the ID key, e.g. "pmt, key SHOP, in project/".>
 
 ## Things to know
 
 - <Affirmative guidance: what to do or rely on.>
+
+## Notes
+
+The project's wiki: [notes/index.md](notes/index.md).
 ```
 
 Leave out sections with nothing to say. On an update, keep entries that are still true, and call out each one you changed or removed.

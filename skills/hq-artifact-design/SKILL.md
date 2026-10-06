@@ -15,7 +15,7 @@ Settle three things and write them into the page as the first block of its `<sty
 - **Color**: four to six named tokens on `:root`: background, foreground, muted, rule, accent. Add semantic tokens (good, warning, bad) when the page shows state.
 - **Type**: a font token for each role: a display face for headings, used sparingly; a body face; a mono face for code, paths, and numbers in columns.
 
-Derive every later decision from those tokens. Ground the choices in the subject: an engineering review suits a technical sheet, a stakeholder report suits an editorial page. Include at least one detail only this subject would have, as content: its real units, terms, and figures (line counts, test totals, parcel IDs).
+Derive every later decision from those tokens. Ground the choices in the subject: an engineering review suits a technical sheet, a stakeholder report suits an editorial page. Include at least one detail only this subject would have, as content: its real units, terms, and figures (line counts, test totals, order IDs).
 
 ## 2. Fundamentals
 
@@ -43,7 +43,7 @@ Words are design material.
 
 - Short, direct sentences in active voice.
 - Name things the way the reader knows them: the behaviour they see, the terms their team uses.
-- Titles state the point ("Pages no longer lock each other out").
+- Titles state the point ("Checkout no longer charges a card twice").
 - Specific over clever: real numbers, real names, real paths.
 - Plain statements throughout. Asides set off by dashes, "not X, but Y" framing, colon-then-reveal sentences, scare quotes, and stock phrases ("worth noting", "it's important to") all read as generated; rewrite them as plain sentences.
 - A control says what it does ("Copy"), and its result confirms it ("Copied").
