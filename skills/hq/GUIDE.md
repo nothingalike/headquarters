@@ -8,6 +8,7 @@ If `~/.headquarters/me.md` is missing, the machine hasn't been set up: point it 
 
 ```
 ~/.headquarters/
+  .gitignore                     what stays on this machine when headquarters syncs (see Syncing between machines)
   me.md                          the user's cross-project working preferences
   tags.md                        the tag vocabulary every note draws from
   notes/                         wiki notes that span projects or belong to none (see NOTES.md)
@@ -32,9 +33,14 @@ A project folder can hold more than `project.md` and `stories/`. Add a file or f
 
 ## Resolving the project
 
-The project slug is the git root folder's name (`git rev-parse --show-toplevel`), lowercased, with spaces and underscores turned into hyphens: `Acme Shop` → `acme-shop`. Outside a git repo, use the current folder's name the same way.
+A project's memory has to be found from any machine, wherever the repo is cloned and whatever its folder is called. Resolve the project folder in this order:
 
-If `~/.headquarters/<project-slug>/project.md` is missing, point it out and suggest `/hq-init`. Carry on either way, creating the project folder as needed.
+1. **Remote**: normalize `git remote get-url origin` to `host/owner/repo`, lowercased, with no scheme, user, or `.git`: `git@github.com:Acme/Shop.git` and `https://github.com/acme/shop` both become `github.com/acme/shop`. The project is the folder whose `project.md` has that `remote:` (`grep -l "^remote: <value>$" ~/.headquarters/*/project.md`).
+2. **Folder name**: the git root folder's name (`git rev-parse --show-toplevel`), lowercased, with spaces and underscores turned into hyphens: `Acme Shop` → `acme-shop`. Outside a git repo, use the current folder's name the same way. A home folder or a folder that only holds other repos (`~/source/repos`) is no project: ask which project the work belongs to.
+
+When the folder name matched and the repo has a remote that `project.md` lacks, add the `remote:` line and report it, so the next machine matches by remote.
+
+If no `project.md` matches, point it out and suggest `/hq-init`. Carry on either way, creating the project folder as needed.
 
 ## Resolving the story
 
@@ -69,12 +75,29 @@ When something fits two places, write it once in the more shared place and link 
 ## Writing rules
 
 - **Affirmative guidance.** Write every lesson as what to do or rely on: "Auth tokens refresh in `middleware.ts`; extend there." Capture past decisions as decisions with their reason ("We chose X because Y"), so the next agent follows the chosen path.
+- **Paths that travel.** Headquarters syncs between machines with different operating systems and folder layouts, so write paths relative to the repo root (`src/billing/invoice.ts`) or to headquarters (`~/.headquarters/plate/plate.md`). Identify a repo by its `remote:`. Absolute paths belong only in pages made for this machine, such as a review's VS Code links.
 - **Reference over repetition.** Link specs, story files, ADRs, commits, and files by path instead of copying them.
 - **No secrets.** Redact API keys, passwords, tokens, connection strings, and personal information.
 - **Report every write.** After writing to headquarters or a story file, tell the user what changed and where: "Saved to `billing-api/project.md`: the build runs from `src/`." When fixing stale memory, call the fix out explicitly with the old and new claim, so the user can course-correct.
 - **Reports stay in headquarters.** Every report (reviews, analyses, any other page written for the user) is a file in the project's headquarters folder, kept local even when the harness can publish pages elsewhere.
-- **Hand over pages ready to open.** When a page is written, open it in the default browser (`start "" "<path>"` on Windows, `open` on macOS, `xdg-open` on Linux), and give the user a clickable `file:///` link with the full absolute path and forward slashes (`file:///C:/Users/<you>/.headquarters/<project>/.../index.html`). Terminals open a `file:///` link on Ctrl+click; a `~` path can't be clicked.
+- **Hand over pages ready to open.** When a page is written, open it in the default browser (`start "" "<path>"` on Windows, `open` on macOS, `xdg-open` on Linux), and give the user a clickable `file:///` link with the full absolute path and forward slashes (`file:///C:/Users/<you>/.headquarters/<project>/.../index.html` on Windows, `file:///Users/<you>/.headquarters/...` on macOS, `file:///home/<you>/.headquarters/...` on Linux). Terminals open a `file:///` link on Ctrl+click; a `~` path can't be clicked.
 - **The user commits.** Leave all git commits and pushes to the user, who reviews work first.
+
+## Syncing between machines
+
+Headquarters can be a git repo with a private remote, so every machine the user works on shares the same memory. Each machine keeps a sparse checkout of the projects it works on: `git sparse-checkout set plate notes <project-slug> ...` checks out every top-level file (`me.md`, `tags.md`, `.gitignore`) plus the listed folders, and `git sparse-checkout add <project-slug>` adds a project later.
+
+`.gitignore` keeps what is secret, bulky, or tied to one machine out of the repo:
+
+```
+calendars/
+meetings/
+**/assets/
+```
+
+Links into ignored folders (a plate line pointing at a meeting file) resolve only on the machine that wrote them, which is expected.
+
+Syncing runs only when the user asks for it, with `/hq sync` (see the `hq` skill), since the user decides what gets committed.
 
 ## Workflow states
 

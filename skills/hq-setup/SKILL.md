@@ -8,9 +8,19 @@ Read [../hq/GUIDE.md](../hq/GUIDE.md) first for the layout and the writing rules
 
 This runs once per machine, and again whenever the user wants to revise their preferences. Each step is idempotent: detect what already exists and change only what's missing or outdated.
 
-## 1. Create headquarters
+## 1. Create or clone headquarters
 
-Create `~/.headquarters` if it doesn't exist.
+Ask whether the user already keeps headquarters in a git remote, from another machine.
+
+- **Yes, and `~/.headquarters` doesn't exist**: clone it with sparse checkout, then ask which projects this machine works on and check out those plus the shared folders, as the guide's "Syncing between machines" describes:
+
+  ```bash
+  git clone --sparse <remote> ~/.headquarters
+  git -C ~/.headquarters sparse-checkout set plate notes <project-slug> ...
+  ```
+
+  `me.md` then already exists, so step 2 reviews it instead of asking from scratch.
+- **No**: create `~/.headquarters` if it doesn't exist. Offer to make it a git repo for syncing later: `git init`, the guide's `.gitignore`, and a private remote the user creates. Leave the first commit and push to the user, or to `/hq sync`.
 
 ## 2. Write `me.md`
 

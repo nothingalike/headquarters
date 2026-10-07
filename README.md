@@ -12,6 +12,10 @@ Install all the skills together: each one reads the shared guide at `../hq/GUIDE
 
 Then run `/hq-setup` once on your machine, and `/hq-init` inside each project you work on.
 
+### More than one machine
+
+Make `~/.headquarters` a git repo with a private remote, and run `/hq sync` whenever you want to share memory. Calendars, meeting transcripts, and screenshots stay on the machine that made them (`.gitignore`). On another machine, `/hq-setup` clones it as a sparse checkout of just the projects you work on there. Projects are matched by their git remote, so a clone can live in any folder and on any operating system.
+
 ## Skills
 
 | Skill | Invoked by | What it does |

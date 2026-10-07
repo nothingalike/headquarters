@@ -17,7 +17,7 @@ Then gather everything the environment already knows:
 - README, and `CLAUDE.md`/`AGENTS.md`
 - manifests and build files (`package.json`, `*.csproj`, `*.sln`, `pyproject.toml`, `Cargo.toml`, `ProjectSettings/` for Unity, and so on)
 - `.workspace/pm-toolbox.yml`: if present, the repo uses `pmt`. Note its item key and the `project/` path, and add `pm-toolbox` to Related.
-- `git remote -v` and the default branch
+- `git remote -v` and the default branch. Record the origin remote, normalized as the guide describes, as `remote:`.
 - `docs/adr/`, if present
 
 ## 2. Show, then ask
@@ -39,7 +39,7 @@ Write or update `~/.headquarters/<project-slug>/project.md`:
 ```md
 ---
 project: <project-slug>
-repo: <absolute path to git root>
+remote: <normalized origin remote, e.g. github.com/acme/shop; omit outside git>
 updated: <YYYY-MM-DD>
 ---
 
@@ -68,6 +68,6 @@ updated: <YYYY-MM-DD>
 The project's wiki: [notes/index.md](notes/index.md).
 ```
 
-Leave out sections with nothing to say. On an update, keep entries that are still true, and call out each one you changed or removed.
+Leave out sections with nothing to say. On an update, keep entries that are still true, and call out each one you changed or removed. Replace an old `repo:` line, which held a local path, with `remote:`.
 
 Finish by reporting the path and a one-line summary of what changed.

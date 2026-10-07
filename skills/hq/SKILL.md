@@ -13,6 +13,7 @@ Infer the intent from the user's phrasing, or from what the work needs when acti
 - **Remember**: "save this", "I just talked to Bob and we learned X", documentation worth keeping, or a lesson you want the next session to have.
 - **Update**: a memory is outdated, incomplete, or contradicted by the code.
 - **Forget**: the user asks to remove something, or a memory is simply wrong.
+- **Sync**: "/hq sync", "sync headquarters": share memory with the user's other machines.
 
 When the intent is still ambiguous, ask one short question.
 
@@ -46,3 +47,13 @@ Edit the entry in place so it states the current truth. For a note, bump `update
 ## Forget
 
 Delete the entry, then report what was removed and from where. When a note has only stopped being true, mark it `deprecated` and say what replaced it. When removing a note, take it out of its `index.md`, log the removal, and fix links that pointed at it.
+
+## Sync
+
+Run this only when the user asks; asking is their approval to commit and push headquarters.
+
+1. Check that `~/.headquarters` is a git repo with a remote. If it isn't, point the user to `/hq-setup`, which sets it up.
+2. Commit local changes first: `git -C ~/.headquarters add -A`, then commit with `sync: <hostname> <YYYY-MM-DD HH:MM>` when anything is staged.
+3. `git -C ~/.headquarters pull --rebase`. On a conflict, resolve it when both sides are plain additions (two machines appending to the same day's log or list): keep both, in date order. Otherwise stop and show the user the conflicting lines.
+4. `git -C ~/.headquarters push`.
+5. Report what came in and what went out, as file lists from the pull and the commit.
