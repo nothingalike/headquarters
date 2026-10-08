@@ -80,6 +80,7 @@ When something fits two places, write it once in the more shared place and link 
 - **No secrets.** Redact API keys, passwords, tokens, connection strings, and personal information.
 - **Report every write.** After writing to headquarters or a story file, tell the user what changed and where: "Saved to `billing-api/project.md`: the build runs from `src/`." When fixing stale memory, call the fix out explicitly with the old and new claim, so the user can course-correct.
 - **Reports stay in headquarters.** Every report (reviews, analyses, any other page written for the user) is a file in the project's headquarters folder, kept local even when the harness can publish pages elsewhere.
+- **Reports follow the report skill when one is set.** Before writing a report, read `~/.headquarters/settings.md` if it exists. When it names a `report-skill:`, follow that skill to write the report; it may hand the format back to the calling skill. Without one, write the report as the calling skill describes.
 - **Hand over pages ready to open.** When a page is written, open it in the default browser (`start "" "<path>"` on Windows, `open` on macOS, `xdg-open` on Linux), and give the user a clickable `file:///` link with the full absolute path and forward slashes (`file:///C:/Users/<you>/.headquarters/<project>/.../index.html` on Windows, `file:///Users/<you>/.headquarters/...` on macOS, `file:///home/<you>/.headquarters/...` on Linux). Terminals open a `file:///` link on Ctrl+click; a `~` path can't be clicked.
 - **The user commits.** Leave all git commits and pushes to the user, who reviews work first.
 
@@ -87,13 +88,19 @@ When something fits two places, write it once in the more shared place and link 
 
 Headquarters can be a git repo with a private remote, so every machine the user works on shares the same memory. Each machine keeps a sparse checkout of the projects it works on: `git sparse-checkout set plate notes <project-slug> ...` checks out every top-level file (`me.md`, `tags.md`, `.gitignore`) plus the listed folders, and `git sparse-checkout add <project-slug>` adds a project later.
 
-`.gitignore` keeps what is secret, bulky, or tied to one machine out of the repo:
+`.gitignore` keeps what is secret, sensitive, bulky, or tied to one machine out of the repo:
 
 ```
-calendars/
-meetings/
-**/assets/
+calendars/                       # private iCal URLs
+meetings/                        # notes and full transcripts
+**/assets/                       # screenshots and other media
+*.png  *.jpg  *.jpeg  *.gif  *.webp  *.mp4  *.webm
+*.rpt  *.csv  *.xlsx             # data exported from client systems
+*.log                            # output captured during verification runs
+.DS_Store  Thumbs.db  desktop.ini  .obsidian/workspace*.json  .vscode/  node_modules/  *.tmp  *.swp
 ```
+
+Write one pattern per line in the real file. Save data exports and run logs beside the work as usual; the story's notes or report summarize what they showed, so the summary travels and the raw data stays local.
 
 Links into ignored folders (a plate line pointing at a meeting file) resolve only on the machine that wrote them, which is expected.
 
